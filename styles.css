@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 700px;
   margin: auto;
   padding: 20px;
   text-align: center;
@@ -77,12 +77,13 @@ input {
   gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .box {
   flex: 1;
-  min-width: 150px;
-  padding: 15px;
+  min-width: 180px;
+  padding: 20px;
   border-radius: 14px;
   color: white;
 }
@@ -92,7 +93,7 @@ input {
 }
 
 .box p {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
 }
 
@@ -106,4 +107,38 @@ input {
 
 .balance-box {
   background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.transaction-card {
+  text-align: left;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background: #f3f4f6;
+  margin: 8px 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #111;
+}
+
+.delete-btn {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #b91c1c;
 }

@@ -1,6 +1,5 @@
-let income = 0;
-let expenses = 0;
 let selectedType = "income";
+let transactions = [];
 
 function setType(type) {
   selectedType = type;
@@ -19,21 +18,59 @@ function setType(type) {
 }
 
 function addEntry() {
-  const amount = Number(document.getElementById("amount").value);
+  const descInput = document.getElementById("desc");
+  const amountInput = document.getElementById("amount");
 
-  if (!amount) return;
+  const desc = descInput.value.trim();
+  const amount = Number(amountInput.value);
 
-  if (selectedType === "income") {
-    income += amount;
-  } else {
-    expenses += amount;
+  if (desc === "" || amount <= 0 || isNaN(amount)) {
+    alert("Please enter a description and a valid amount.");
+    return;
   }
+
+  const transaction = {
+    desc: desc,
+    amount: amount,
+    type: selectedType
+  };
+
+  transactions.push(transaction);
+
+  descInput.value = "";
+  amountInput.value = "";
 
   updateUI();
 }
 
 function updateUI() {
+  let income = 0;
+  let expenses = 0;
+
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  transactions.forEach((t, index) => {
+    if (t.type === "income") {
+      income += t.amount;
+    } else {
+      expenses += t.amount;
+    }
+
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <span>${t.desc} - $${t.amount} (${t.type})</span>
+      <button class="delete-btn" onclick="deleteEntry(${index})">X</button>
+    `;
+    list.appendChild(li);
+  });
+
   document.getElementById("income").textContent = "$" + income;
   document.getElementById("expenses").textContent = "$" + expenses;
   document.getElementById("balance").textContent = "$" + (income - expenses);
+}
+
+function deleteEntry(index) {
+  transactions.splice(index, 1);
+  updateUI();
 }
