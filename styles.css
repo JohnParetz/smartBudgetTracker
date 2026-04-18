@@ -1,3 +1,23 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background: rgba(255,255,255,0.15);
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #4f46e5, #7c3aed);
@@ -141,4 +161,82 @@ li {
 
 .delete-btn:hover {
   background: #b91c1c;
+}
+.health-card {
+  text-align: center;
+}
+
+#healthMessage {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.good-health {
+  color: #16a34a;
+}
+
+.neutral-health {
+  color: #ca8a04;
+}
+
+.bad-health {
+  color: #dc2626;
+}
+
+.health-card {
+  text-align: center;
+}
+
+.health-animation {
+  font-size: 48px;
+  margin: 15px 0;
+}
+
+#healthMessage {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.health-advice {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  color: #334155;
+}
+
+.good-health {
+  color: #16a34a;
+}
+
+.bad-health {
+  color: #dc2626;
+}
+
+/* good result animation */
+.good-anim {
+  animation: bounceMoney 1s ease-in-out infinite alternate;
+}
+
+/* bad result animation */
+.bad-anim {
+  animation: shakeWarning 0.5s ease-in-out infinite;
+}
+
+@keyframes bounceMoney {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  100% {
+    transform: translateY(-8px) scale(1.08);
+  }
+}
+
+@keyframes shakeWarning {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-6px); }
+  100% { transform: translateX(0); }
 }

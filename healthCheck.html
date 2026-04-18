@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Financial Health - Smart Budget Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="healthCheck.html">Health Check</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <h1>Financial Health Check</h1>
+    <p class="subtitle">Review your current budget status</p>
+
+    <div class="card about-card">
+      <h2>Current Totals</h2>
+      <p><strong>Income:</strong> <span id="healthIncome">$0</span></p>
+      <p><strong>Expenses:</strong> <span id="healthExpenses">$0</span></p>
+      <p><strong>Balance:</strong> <span id="healthBalance">$0</span></p>
+    </div>
+
+    <div class="card health-card">
+      <h2>Result</h2>
+
+      <div id="healthAnimation" class="health-animation">📊</div>
+
+      <p id="healthMessage">No data yet.</p>
+      <p id="healthAdvice" class="health-advice"></p>
+
+      <button class="add-btn" onclick="checkHealth()">Check Financial Health</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
