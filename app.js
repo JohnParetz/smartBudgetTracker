@@ -61,6 +61,14 @@ function deleteEntry(index) {
   saveTransactions();
   updateUI();
 }
+// delete all 
+function clearAll() {
+  if (confirm("Are you sure you want to delete all transactions?")) {
+    transactions = [];
+    localStorage.removeItem("transactions");
+    updateUI();
+  }
+}
 
 // update home page and health page totals
 function updateUI() {
@@ -150,3 +158,165 @@ function checkHealth() {
 
 // load data when page opens
 updateUI();
+
+// profile page
+function getTotals() {
+  let income = 0;
+  let expenses = 0;
+
+  transactions.forEach((t) => {
+    if (t.type === "income") {
+      income += t.amount;
+    } else {
+      expenses += t.amount;
+    }
+  });
+
+  return {
+    income: income,
+    expenses: expenses,
+    balance: income - expenses
+  };
+}
+
+function saveProfile() {
+  const nameInput = document.getElementById("profileName");
+  const goalInput = document.getElementById("savingsGoal");
+
+  if (!nameInput || !goalInput) return;
+
+  const profile = {
+    name: nameInput.value.trim(),
+    goal: Number(goalInput.value)
+  };
+
+  if (profile.name === "" || profile.goal <= 0) {
+    alert("Please enter your name and a valid savings goal.");
+    return;
+  }
+
+  localStorage.setItem("profile", JSON.stringify(profile));
+  displayProfile();
+
+  nameInput.value = "";
+  goalInput.value = "";
+}
+
+function displayProfile() {
+  const profileMessage = document.getElementById("profileMessage");
+  const goalMessage = document.getElementById("goalMessage");
+  const balanceGoalMessage = document.getElementById("balanceGoalMessage");
+
+  if (!profileMessage || !goalMessage || !balanceGoalMessage) return;
+
+  const profile = JSON.parse(localStorage.getItem("profile"));
+  const totals = getTotals();
+
+  if (!profile) {
+    profileMessage.textContent = "No profile saved yet.";
+    goalMessage.textContent = "";
+    balanceGoalMessage.textContent = "";
+    return;
+  }
+
+  profileMessage.textContent = "Welcome, " + profile.name + "!";
+  goalMessage.textContent = "Savings goal: $" + profile.goal + " | Current balance: $" + totals.balance;
+
+  if (totals.balance >= profile.goal) {
+    balanceGoalMessage.textContent = "✅ Goal met! You reached your monthly savings goal.";
+    balanceGoalMessage.className = "goal-success";
+  } else {
+    const difference = profile.goal - totals.balance;
+    balanceGoalMessage.textContent = "❌ Goal not met yet. You need $" + difference + " more to reach your goal.";
+    balanceGoalMessage.className = "goal-fail";
+  }
+}
+
+function showTip(type) {
+  const tipMessage = document.getElementById("tipMessage");
+  if (!tipMessage) return;
+
+  if (type === "saving") {
+    tipMessage.textContent = "Saving Tip: Try setting aside a small amount right after you receive income.";
+  } else if (type === "spending") {
+    tipMessage.textContent = "Spending Tip: Review your largest expenses and see where you can reduce costs.";
+  } else {
+    tipMessage.textContent = "Goal Tip: Start with a realistic goal and increase it slowly over time.";
+  }
+}
+
+let profiles = JSON.parse(localStorage.getItem("profiles")) || [];
+
+function saveProfiles() {
+  localStorage.setItem("profiles", JSON.stringify(profiles));
+}
+
+function saveProfile() {
+  const nameInput = document.getElementById("profileName");
+  const goalInput = document.getElementById("savingsGoal");
+  const balanceInput = document.getElementById("profileBalance");
+
+  if (!nameInput || !goalInput || !balanceInput) return;
+
+  const name = nameInput.value.trim();
+  const goal = Number(goalInput.value);
+  const balance = Number(balanceInput.value);
+
+  if (name === "" || goal <= 0 || isNaN(balance)) {
+    alert("Please enter a name, savings goal, and balance.");
+    return;
+  }
+
+  profiles.push({
+    name: name,
+    goal: goal,
+    balance: balance
+  });
+
+  saveProfiles();
+
+  nameInput.value = "";
+  goalInput.value = "";
+  balanceInput.value = "";
+
+  displayProfiles();
+}
+
+function deleteProfile(index) {
+  profiles.splice(index, 1);
+  saveProfiles();
+  displayProfiles();
+}
+
+function displayProfiles() {
+  const profileList = document.getElementById("profileList");
+  if (!profileList) return;
+
+  profileList.innerHTML = "";
+
+  profiles.sort((a, b) => {
+    const percentA = a.balance / a.goal;
+    const percentB = b.balance / b.goal;
+    return percentB - percentA;
+  });
+
+  profiles.forEach((profile, index) => {
+    const percent = Math.round((profile.balance / profile.goal) * 100);
+    const status = profile.balance >= profile.goal ? "Goal Met ✅" : "Still Working ⏳";
+
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <span>
+        <strong>${profile.name}</strong><br>
+        Balance: $${profile.balance} / Goal: $${profile.goal}<br>
+        Progress: ${percent}% - ${status}
+      </span>
+      <button class="delete-btn" onclick="deleteProfile(${index})">X</button>
+    `;
+
+    profileList.appendChild(li);
+  });
+}
+
+
+displayProfile();

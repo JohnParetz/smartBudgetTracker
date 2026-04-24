@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile - Smart Budget Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="healthCheck.html">Health Check</a>
+      <a href="profile.html">Profile</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <h1>Budget Profiles</h1>
+    <p class="subtitle">Compare savings goals with other users</p>
+
+    <div class="card">
+      <h2>Add Profile</h2>
+
+      <input type="text" id="profileName" placeholder="Name">
+      <input type="number" id="savingsGoal" placeholder="Savings goal">
+      <input type="number" id="profileBalance" placeholder="Current balance">
+
+      <button class="add-btn" onclick="saveProfile()">Save Profile</button>
+    </div>
+
+    <div class="card profile-result">
+      <h2>Profile Comparison</h2>
+      <p class="health-advice">
+        Profiles are ranked by how close they are to reaching their savings goal.
+      </p>
+
+      <ul id="profileList"></ul>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

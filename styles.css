@@ -240,3 +240,55 @@ li {
   75% { transform: translateX(-6px); }
   100% { transform: translateX(0); }
 }
+
+/* profile page */
+.tip-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 15px 0;
+}
+
+.tip-buttons button {
+  background: #6366f1;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tip-buttons button:hover {
+  background: #4f46e5;
+}
+
+.goal-success {
+  color: #16a34a;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.goal-fail {
+  color: #dc2626;
+  font-size: 18px;
+  font-weight: bold;
+}
+#profileList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#profileList li {
+  background: #f3f4f6;
+  color: #111;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
