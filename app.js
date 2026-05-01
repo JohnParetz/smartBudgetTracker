@@ -352,7 +352,7 @@ function generateSuggestion() {
     suggestionBox.classList.add("suggestion-warning");
     suggestionIcon.textContent = "🛑";
     suggestionTitle.textContent = "Spending Alert";
-    suggestionText.textContent = "Your expenses are higher than your income. Try cutting one non-essential expense this week.";
+    suggestionText.textContent = "Your expenses are higher than your income. Try cutting one non-essential expense this month.";
   } else if (balance >= 500) {
     suggestionBox.classList.add("suggestion-success");
     suggestionIcon.textContent = "💰";
