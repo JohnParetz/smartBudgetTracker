@@ -292,3 +292,81 @@ li {
   align-items: center;
   text-align: left;
 }
+/* suggestions */
+.suggestion-card {
+  color: white;
+  padding: 25px;
+  border-radius: 18px;
+  margin-top: 20px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+  transition: 0.3s ease;
+}
+
+.suggestion-card h2 {
+  margin-bottom: 10px;
+}
+
+.suggestion-card p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.suggestion-icon {
+  font-size: 55px;
+  margin-bottom: 10px;
+  animation: popIn 0.5s ease;
+}
+
+.default-suggestion,
+.suggestion-empty {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+.suggestion-warning {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+}
+
+.suggestion-success {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+.suggestion-calm {
+  background: linear-gradient(135deg, #0ea5e9, #6366f1);
+}
+
+.suggestion-neutral {
+  background: linear-gradient(135deg, #64748b, #334155);
+}
+
+.suggestion-warning .suggestion-icon {
+  animation: shakeWarning 0.5s ease-in-out infinite;
+}
+
+.suggestion-success .suggestion-icon {
+  animation: bounceMoney 1s ease-in-out infinite alternate;
+}
+
+.suggestion-calm .suggestion-icon {
+  animation: floatTip 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes floatTip {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-8px);
+  }
+}

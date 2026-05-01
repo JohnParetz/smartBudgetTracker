@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Suggestions - Smart Budget Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="healthCheck.html">Health Check</a>
+      <a href="profile.html">Profile</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <h1>Budget Suggestions</h1>
+    <p class="subtitle">Personal tips based on your current budget</p>
+
+    <div class="suggestion-card default-suggestion" id="suggestionBox">
+      <div class="suggestion-icon" id="suggestionIcon">💡</div>
+      <h2 id="suggestionTitle">Ready for a tip?</h2>
+      <p id="suggestionText">Click the button to get a budget suggestion.</p>
+      <button class="add-btn" onclick="generateSuggestion()">Get Suggestion</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

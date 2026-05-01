@@ -318,5 +318,55 @@ function displayProfiles() {
   });
 }
 
-
 displayProfile();
+
+function generateSuggestion() {
+  const suggestionBox = document.getElementById("suggestionBox");
+  const suggestionIcon = document.getElementById("suggestionIcon");
+  const suggestionTitle = document.getElementById("suggestionTitle");
+  const suggestionText = document.getElementById("suggestionText");
+
+  if (!suggestionBox || !suggestionIcon || !suggestionTitle || !suggestionText) return;
+
+  let income = 0;
+  let expenses = 0;
+
+  transactions.forEach((t) => {
+    if (t.type === "income") {
+      income += t.amount;
+    } else {
+      expenses += t.amount;
+    }
+  });
+
+  const balance = income - expenses;
+
+  suggestionBox.className = "suggestion-card";
+
+  if (transactions.length === 0) {
+    suggestionBox.classList.add("suggestion-empty");
+    suggestionIcon.textContent = "📊";
+    suggestionTitle.textContent = "Start Tracking First";
+    suggestionText.textContent = "Add income and expenses on the Home page so the app can give you a useful suggestion.";
+  } else if (expenses > income) {
+    suggestionBox.classList.add("suggestion-warning");
+    suggestionIcon.textContent = "🛑";
+    suggestionTitle.textContent = "Spending Alert";
+    suggestionText.textContent = "Your expenses are higher than your income. Try cutting one non-essential expense this week.";
+  } else if (balance >= 500) {
+    suggestionBox.classList.add("suggestion-success");
+    suggestionIcon.textContent = "💰";
+    suggestionTitle.textContent = "Strong Balance";
+    suggestionText.textContent = "Great job! You have a strong positive balance. Consider moving part of it into savings.";
+  } else if (balance > 0) {
+    suggestionBox.classList.add("suggestion-calm");
+    suggestionIcon.textContent = "🌱";
+    suggestionTitle.textContent = "Positive Progress";
+    suggestionText.textContent = "You are staying positive. Try saving a small amount before spending extra money.";
+  } else {
+    suggestionBox.classList.add("suggestion-neutral");
+    suggestionIcon.textContent = "⚖️";
+    suggestionTitle.textContent = "Balanced Budget";
+    suggestionText.textContent = "Your balance is at zero. Try setting a small savings goal for next month.";
+  }
+}
